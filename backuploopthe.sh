@@ -9,7 +9,8 @@ FILENAME="/backup/backup_"$RUNDATE"_"$1".tar"
 DIR=""
 tar -cvf $FILENAME /backup/scriptnconf
 touch $FILENAME
-for i in `cat $2`do    
+for i in `cat $2`
+do    
   DIR="/"$i
   echo $DIR
   tar -rvf $FILENAME $DIR 
