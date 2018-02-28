@@ -1,9 +1,10 @@
-#!/bin/bash# SUMTHEFS
+#!/bin/bash
+# SUMTHEFS
 # This scripts maps the filesystem tree from / node
 # and writes down cryptograhpic checksums for files
 # and also linker info for executables
 ## 
-#First parameter $1 - sum name
+# First parameter $1 - sum name
 # Second parameter $2 - config file
 
 #MAIN
@@ -39,7 +40,7 @@ function sumthefile {
   #sha256sum $2 >> $1
   #sha384sum $2 >> $1
   #sha512sum $2 >> $1
-  if [ -z $3 ]; then
+  if [ -z $3 ]; then
     echo "Not checking linker"
   elif [ -x $LD ]; then
     echo "Linker Info"
@@ -49,7 +50,8 @@ function sumthefile {
   fi
 }
 
-function search {# First parameter $1 - path to log
+function search {
+  # First parameter $1 - path to log
   # Second parameter $2 - path to dir
   LOGFILENAME=$1
   start=$2
