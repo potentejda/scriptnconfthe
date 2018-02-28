@@ -90,7 +90,8 @@ time {
   echo "Tree:" >> $LOGFILENAME
   find / >> $LOGFILENAME
   echo "Cryptographic checksums and linker info:" >> $LOGFILENAME
-  for i in `cat $CONFIG` do
+  for i in `cat $CONFIG`
+  do
     search $LOGFILENAME $i
     echo `pwd`$i
   done
