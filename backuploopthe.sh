@@ -10,7 +10,7 @@ DIR=""
 tar -cvf $FILENAME /backup/scriptnconf
 touch $FILENAME
 for i in `cat $2`
-do    
+do
   DIR="/"$i
   echo $DIR
   tar -rvf $FILENAME $DIR 
