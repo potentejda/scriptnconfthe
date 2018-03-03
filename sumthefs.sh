@@ -94,8 +94,7 @@ time {
   echo "Tree:" >> $LOGFILENAME
   find / >> $LOGFILENAME
   echo "Cryptographic checksums and linker info:" >> $LOGFILENAME
-  for i in `cat $CONFIG`
-  do
+  for i in `cat $CONFIG`; do
     if [ -d $ANALYZED ]; then
       search $LOGFILENAME $i
     elif [ -x $ANALYZED ]; then
