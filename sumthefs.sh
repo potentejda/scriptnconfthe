@@ -14,7 +14,8 @@ SUPERSTART=`pwd`
 CONFIG=$SUPERSTART"/"$2
 if [ -x /usr/bin/ld ]; then
   LD=/usr/bin/ld
-  $LD -Velse
+  $LD -V
+else
   LD=""
 fi
 
