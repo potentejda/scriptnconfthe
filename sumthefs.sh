@@ -59,6 +59,10 @@ function search {
   start=$2
   if [ -h $start ]; then
     echo "Symlink found."
+  elif [ -x $ANALYZED ]; then
+    sumthefile $LOGFILENAME $ANALYZED $LD
+  elif [ -f $ANALYZED ]; then
+    sumthefile $LOGFILENAME $ANALYZED $LD
   else
     for i in `ls $start`; do
       ANALYZED=$start"/"${i}
