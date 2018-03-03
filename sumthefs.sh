@@ -96,12 +96,14 @@ time {
   echo "Cryptographic checksums and linker info:" >> $LOGFILENAME
   for i in `cat $CONFIG`
   do
-    if [ -x $ANALYZED ]; then
+    if [ -d $ANALYZED ]; then
+      search $LOGFILENAME $i
+    elif [ -x $ANALYZED ]; then
       sumthefile $LOGFILENAME $ANALYZED $LD
     elif [ -f $ANALYZED ]; then
       sumthefile $LOGFILENAME $ANALYZED
-    elif [ -d $ANALYZED ]; then
-      search $LOGFILENAME $i
+    else
+      echo "Node not recognized"
     fi
     echo `pwd`$i
   done
