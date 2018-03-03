@@ -7,7 +7,7 @@ RUNDATE=`./cutslash.sh $RUNDATE`
 echo $RUNDATE
 FILENAME="/backup/backup_"$RUNDATE"_"$1".tar"
 DIR=""
-tar -cvf $FILENAME /backup/scriptnconf
+tar -cvf $FILENAME /backup/scriptnconfthe
 touch $FILENAME
 for i in `cat $2`
 do
