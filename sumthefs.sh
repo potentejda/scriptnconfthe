@@ -23,14 +23,16 @@ function ldfile {
   # Second paramter $2 - file path
   # Third parameter $3 - linker
   echo "$3 -M $2" >> $1
+  set +e
   $3 -M $2 -o /dev/void >> $1
+  set -e
 }
 
 function sumthefile {
   # First parameter $1 - log path
   # Second parameter $2 - file path
-  # Third patameter $3 - linker 
-  echo $2
+  # Third patameter $3 - linker
+  echo $2
   if [ -x /bin/sha256sum ]; then
     /bin/sha256sum $2 >> $1
   elif [ -x /usr/bin/cksum ]; then
@@ -68,7 +70,7 @@ function search {
       elif [ -x $ANALYZED ]; then
         sumthefile $LOGFILENAME $ANALYZED $LD
       elif [ -f $ANALYZED ]; then
-        sumthefile $LOGFILENAME $ANALYZED
+        sumthefile $LOGFILENAME $ANALYZED $LD
       else
         echo $ANALYZED
         echo "Node does not match to anything interesting in this version"
