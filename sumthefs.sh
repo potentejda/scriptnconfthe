@@ -59,10 +59,6 @@ function search {
   start=$2
   if [ -h $start ]; then
     echo "Symlink found."
-  elif [ -x $ANALYZED ]; then
-    sumthefile $LOGFILENAME $ANALYZED $LD
-  elif [ -f $ANALYZED ]; then
-    sumthefile $LOGFILENAME $ANALYZED $LD
   else
     for i in `ls $start`; do
       ANALYZED=$start"/"${i}
@@ -100,7 +96,13 @@ time {
   echo "Cryptographic checksums and linker info:" >> $LOGFILENAME
   for i in `cat $CONFIG`
   do
-    search $LOGFILENAME $i
+    if [ -x $ANALYZED ]; then
+      sumthefile $LOGFILENAME $ANALYZED $LD
+    elif [ -f $ANALYZED ]; then
+      sumthefile $LOGFILENAME $ANALYZED
+    elif [ -d $ANALYZED ]; then
+      search $LOGFILENAME $i
+    fi
     echo `pwd`$i
   done
   echo "Sumfs Finished"
