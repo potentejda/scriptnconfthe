@@ -68,7 +68,7 @@ function search {
       echo $ANALYZED
       if [ -d $ANALYZED ]; then
         echo $ANALYZED
-        search $LOGFILENAME $ANALYZED
+        search $LOGFILENAME $ANALYZED &
       elif [ -x $ANALYZED ]; then
         sumthefile $LOGFILENAME $ANALYZED $LD
       elif [ -f $ANALYZED ]; then
@@ -97,15 +97,7 @@ time {
   find / >> $LOGFILENAME
   echo "Cryptographic checksums and linker info:" >> $LOGFILENAME
   for i in `cat $CONFIG`; do
-    if [ -d $ANALYZED ]; then
-      search $LOGFILENAME $i
-    elif [ -x $ANALYZED ]; then
-      sumthefile $LOGFILENAME $ANALYZED $LD
-    elif [ -f $ANALYZED ]; then
-      sumthefile $LOGFILENAME $ANALYZED $LD
-    else
-      echo "Node not recognized"
-    fi
+    search $LOGFILENAME $i
     echo `pwd`$i
   done
   echo "Sumfs Finished"
