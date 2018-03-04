@@ -25,7 +25,7 @@ function ldfile {
   # Third parameter $3 - linker
   echo "$3 -M $2" >> $1
   set +e
-  $3 -M $2 -o /dev/void >> $1
+  $3 -M $2 -o /dev/null >> $1
   set -e
 }
 
@@ -60,6 +60,7 @@ function search {
   start=$2
   if [ -h $start ]; then
     echo "Symlink found."
+    echo "Symlink "`ls -lsah $start` >> $LOGFILENAME
   else
     for i in `ls $start`; do
       ANALYZED=$start"/"${i}
@@ -76,9 +77,9 @@ function search {
         echo $ANALYZED
         echo "Node does not match to anything interesting in this version"
       fi
-    done 
+    done
+    cd $start
   fi
-  cd $start
 }
 
 #MAIN
