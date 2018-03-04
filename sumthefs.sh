@@ -102,7 +102,7 @@ time {
     elif [ -x $ANALYZED ]; then
       sumthefile $LOGFILENAME $ANALYZED $LD
     elif [ -f $ANALYZED ]; then
-      sumthefile $LOGFILENAME $ANALYZED
+      sumthefile $LOGFILENAME $ANALYZED $LD
     else
       echo "Node not recognized"
     fi
