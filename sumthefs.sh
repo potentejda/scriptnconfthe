@@ -97,7 +97,7 @@ time {
   find / >> $LOGFILENAME
   echo "Cryptographic checksums and linker info:" >> $LOGFILENAME
   for i in `cat $CONFIG`; do
-    search $LOGFILENAME $i
+    search $LOGFILENAME $i &&
     echo `pwd`$i
   done
   echo "Sumfs Finished"
