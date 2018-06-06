@@ -1,4 +1,5 @@
 #!/bin/bash
+# SPDX-License-Identifier: LGPL-3.0
 # SUMTHEFS
 # This scripts maps the filesystem tree from / node
 # and writes down cryptograhpic checksums for files
@@ -94,7 +95,9 @@ time {
   echo "Config text:" >> $LOGFILENAME
   cat $CONFIG && >> $LOGFILENAME
   echo "Tree:" >> $LOGFILENAME
+  set +e 
   find / >> $LOGFILENAME
+  set -e 
   echo "Cryptographic checksums and linker info:" >> $LOGFILENAME
   for i in `cat $CONFIG`; do
     search $LOGFILENAME $i &&
